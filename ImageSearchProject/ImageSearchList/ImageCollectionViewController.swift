@@ -18,8 +18,10 @@ final class ImageCollectionViewController: UIViewController {
     }()
     
     private lazy var collectionView: UICollectionView = {
+        // TODO: - Build layout with compositional layout
         let layout = UICollectionViewFlowLayout()
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.keyboardDismissMode = .onDrag
         collectionView.backgroundColor = .white

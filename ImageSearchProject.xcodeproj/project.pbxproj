@@ -14,6 +14,9 @@
 		A63F577A26986EC800B1BD88 /* ImageSearchProjectTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F577926986EC800B1BD88 /* ImageSearchProjectTests.swift */; };
 		A63F578526986EC800B1BD88 /* ImageSearchProjectUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F578426986EC800B1BD88 /* ImageSearchProjectUITests.swift */; };
 		A63F57932698704C00B1BD88 /* ImageCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57922698704C00B1BD88 /* ImageCollectionViewController.swift */; };
+		A63F579726987B7900B1BD88 /* ImageCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F579626987B7900B1BD88 /* ImageCell.swift */; };
+		A63F579B26987E7A00B1BD88 /* ImageCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F579A26987E7A00B1BD88 /* ImageCellViewModel.swift */; };
+		A63F579E2698802800B1BD88 /* UICollectionReusableView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F579D2698802800B1BD88 /* UICollectionReusableView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +50,9 @@
 		A63F578426986EC800B1BD88 /* ImageSearchProjectUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSearchProjectUITests.swift; sourceTree = "<group>"; };
 		A63F578626986EC800B1BD88 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A63F57922698704C00B1BD88 /* ImageCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCollectionViewController.swift; sourceTree = "<group>"; };
+		A63F579626987B7900B1BD88 /* ImageCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCell.swift; sourceTree = "<group>"; };
+		A63F579A26987E7A00B1BD88 /* ImageCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageCellViewModel.swift; sourceTree = "<group>"; };
+		A63F579D2698802800B1BD88 /* UICollectionReusableView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionReusableView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,6 +103,7 @@
 		A63F576126986EC600B1BD88 /* ImageSearchProject */ = {
 			isa = PBXGroup;
 			children = (
+				A63F579C2698800000B1BD88 /* Extensions */,
 				A63F5794269876DE00B1BD88 /* ImageSearchList */,
 				A63F576226986EC600B1BD88 /* AppDelegate.swift */,
 				A63F576426986EC600B1BD88 /* SceneDelegate.swift */,
@@ -128,9 +135,35 @@
 		A63F5794269876DE00B1BD88 /* ImageSearchList */ = {
 			isa = PBXGroup;
 			children = (
+				A63F579826987DF400B1BD88 /* ViewModels */,
+				A63F579526987B4600B1BD88 /* Views */,
 				A63F57922698704C00B1BD88 /* ImageCollectionViewController.swift */,
 			);
 			path = ImageSearchList;
+			sourceTree = "<group>";
+		};
+		A63F579526987B4600B1BD88 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				A63F579626987B7900B1BD88 /* ImageCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		A63F579826987DF400B1BD88 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				A63F579A26987E7A00B1BD88 /* ImageCellViewModel.swift */,
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		A63F579C2698800000B1BD88 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A63F579D2698802800B1BD88 /* UICollectionReusableView+Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,8 +295,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F579B26987E7A00B1BD88 /* ImageCellViewModel.swift in Sources */,
+				A63F579E2698802800B1BD88 /* UICollectionReusableView+Extension.swift in Sources */,
 				A63F57932698704C00B1BD88 /* ImageCollectionViewController.swift in Sources */,
 				A63F576326986EC600B1BD88 /* AppDelegate.swift in Sources */,
+				A63F579726987B7900B1BD88 /* ImageCell.swift in Sources */,
 				A63F576526986EC600B1BD88 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
