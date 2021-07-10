@@ -31,15 +31,21 @@ final class ImageCollectionViewController: UIViewController {
         return collectionView
     }()
     
+    // MARK: - Instance properties
     private var dataSource: UICollectionViewDiffableDataSource<Section, ImageCellViewModel>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, ImageCellViewModel>?
+    private var imageRepo = ImageRepo(networkManager: NetworkManager())
     private var images: [Image] = []
     private var imageCellViewModels: [ImageCellViewModel] = []
+    private let debouncer = Debouncer(delay: 0.3)
+    private var searchTextDisplayed = ""
+    
     // MARK: - Lifecycle Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupView()
+        debouncer.delegate = self
     }
     
     // MARK: - View helper methods
@@ -104,6 +110,10 @@ final class ImageCollectionViewController: UIViewController {
     
     // MARK: - Network call methods
     private func getImages(with text: String) {
+        images.removeAll()
+        imageCellViewModels.removeAll()
+        
+        guard text != "" else { return }
         imageRepo.fetchImages(with: text) { result in
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
@@ -126,6 +136,20 @@ final class ImageCollectionViewController: UIViewController {
 // MARK: - UISearchResultsUpdating
 extension ImageCollectionViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        // TODO
+        debouncer.call()
+    }
+}
+
+// MARK: - DebouncerDelegate
+extension ImageCollectionViewController: DebouncerDelegate {
+    func didFireDebouncer(_ debouncer: Debouncer) {
+        guard let searchText = searchController.searchBar.text,
+              searchText != searchTextDisplayed else {
+            return
+        }
+        searchTextDisplayed = searchText
+        getImages(with: searchText)
+    }
+}
     }
 }
