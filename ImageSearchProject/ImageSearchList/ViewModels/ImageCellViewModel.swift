@@ -11,11 +11,13 @@ struct ImageCellViewModel: Hashable {
     let id: String
     let title: String
     let urlString: String
+    let description: String
     
     init(with image: Image) {
         self.id = image.id
         self.title = image.title
         self.urlString = image.imageLink
+        self.description = image.description
     }
     
     func hash(into hasher: inout Hasher){
