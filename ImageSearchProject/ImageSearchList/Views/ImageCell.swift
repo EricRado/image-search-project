@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ImageCell: UICollectionViewCell {
     
@@ -88,8 +89,14 @@ final class ImageCell: UICollectionViewCell {
         
         titleLabel.text = viewModel.title
         activityIndicatorView.startAnimating()
-        imageView.loadImage(urlString: viewModel.urlString, completion: { [weak self] in
+        imageView.kf.setImage(with: URL(string: viewModel.urlString), placeholder: nil, options: nil) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                self?.imageView.image = UIImage(named: "NotFound")
+            }
             self?.activityIndicatorView.stopAnimating()
-        })
+        }
     }
 }

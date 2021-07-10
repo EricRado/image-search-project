@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 final class ImageDetailViewController: UIViewController {
     // MARK: UI properties
@@ -76,9 +77,16 @@ final class ImageDetailViewController: UIViewController {
             descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16)
         ])
         
-        imageView.loadImage(urlString: viewModel.urlString, completion: { [weak self] in
+        imageView.startAnimating()
+        imageView.kf.setImage(with: URL(string: viewModel.urlString), placeholder: nil, options: nil) { [weak self] result in
+            switch result {
+            case .success:
+                break
+            case .failure:
+                self?.imageView.image = UIImage(named: "NotFound")
+            }
             self?.activityIndicatorView.stopAnimating()
-        })
+        }
         
         let descriptionText = "Description : \(viewModel.description != "" ? viewModel.description : "N/A")"
         descriptionLabel.text = descriptionText

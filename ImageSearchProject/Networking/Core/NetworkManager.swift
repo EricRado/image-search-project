@@ -42,34 +42,6 @@ final class NetworkManager {
         
     }
     
-    func requestImage(_ urlString: String, completion: @escaping (Result<Data, Error>) -> ()) {
-        guard let url = URL(string: urlString) else {
-            completion(.failure(NetworkError.badURLFormat))
-            return
-        }
-        
-        let cache = URLCache.shared
-        let request = URLRequest(url: url)
-        
-        if let cachedURLResponse = cache.cachedResponse(for: request) {
-            completion(.success(cachedURLResponse.data))
-        } else {
-            session.downloadTask(with: url) { url, response, error in
-                if let error = error {
-                    completion(.failure(error))
-                } else if let validURL = url,
-                          let response = response,
-                          let data = try? Data(contentsOf: validURL) {
-                    let cachedURLResponse = CachedURLResponse(response: response, data: data)
-                    cache.storeCachedResponse(cachedURLResponse, for: request)
-                    completion(.success(data))
-                } else {
-                    completion(.failure(NetworkError.unknown))
-                }
-            }.resume()
-        }
-    }
-    
     private func buildURLRequest(with endpoint: EndpointConstructable) -> URLRequest? {
         guard let url = buildURL(with: endpoint) else {
             return nil
