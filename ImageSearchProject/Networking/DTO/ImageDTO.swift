@@ -23,6 +23,10 @@ struct ImageDTO: Decodable {
     let id: String?
     let title: String?
     let description: String?
+    let images: [ImageDetailDTO]?
+}
+
+struct ImageDetailDTO: Decodable {
+    let type: String?
     let link: String?
-    let images: [ImageDTO]?
 }
