@@ -23,6 +23,9 @@
 		A63F57AA26991AED00B1BD88 /* GalleryEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57A926991AED00B1BD88 /* GalleryEndpoint.swift */; };
 		A63F57AC26993EDA00B1BD88 /* HTTPTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57AB26993EDA00B1BD88 /* HTTPTask.swift */; };
 		A63F57AE26993EF200B1BD88 /* HTTPMethod.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57AD26993EF200B1BD88 /* HTTPMethod.swift */; };
+		A63F57B326994AD500B1BD88 /* Image.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57B226994AD500B1BD88 /* Image.swift */; };
+		A63F57B626994BA200B1BD88 /* ImageRepo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57B526994BA200B1BD88 /* ImageRepo.swift */; };
+		A63F57B826995D9900B1BD88 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57B726995D9900B1BD88 /* UIImageView+Extension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,6 +68,9 @@
 		A63F57A926991AED00B1BD88 /* GalleryEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryEndpoint.swift; sourceTree = "<group>"; };
 		A63F57AB26993EDA00B1BD88 /* HTTPTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPTask.swift; sourceTree = "<group>"; };
 		A63F57AD26993EF200B1BD88 /* HTTPMethod.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HTTPMethod.swift; sourceTree = "<group>"; };
+		A63F57B226994AD500B1BD88 /* Image.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Image.swift; sourceTree = "<group>"; };
+		A63F57B526994BA200B1BD88 /* ImageRepo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageRepo.swift; sourceTree = "<group>"; };
+		A63F57B726995D9900B1BD88 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +121,7 @@
 		A63F576126986EC600B1BD88 /* ImageSearchProject */ = {
 			isa = PBXGroup;
 			children = (
+				A63F57B426994B9000B1BD88 /* Repos */,
 				A63F579F26990BDF00B1BD88 /* Networking */,
 				A63F579C2698800000B1BD88 /* Extensions */,
 				A63F5794269876DE00B1BD88 /* ImageSearchList */,
@@ -148,6 +155,7 @@
 		A63F5794269876DE00B1BD88 /* ImageSearchList */ = {
 			isa = PBXGroup;
 			children = (
+				A63F57B126994AB600B1BD88 /* Models */,
 				A63F579826987DF400B1BD88 /* ViewModels */,
 				A63F579526987B4600B1BD88 /* Views */,
 				A63F57922698704C00B1BD88 /* ImageCollectionViewController.swift */,
@@ -175,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				A63F579D2698802800B1BD88 /* UICollectionReusableView+Extension.swift */,
+				A63F57B726995D9900B1BD88 /* UIImageView+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -214,6 +223,22 @@
 				A63F57A926991AED00B1BD88 /* GalleryEndpoint.swift */,
 			);
 			path = Endpoints;
+			sourceTree = "<group>";
+		};
+		A63F57B126994AB600B1BD88 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A63F57B226994AD500B1BD88 /* Image.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		A63F57B426994B9000B1BD88 /* Repos */ = {
+			isa = PBXGroup;
+			children = (
+				A63F57B526994BA200B1BD88 /* ImageRepo.swift */,
+			);
+			path = Repos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -345,12 +370,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A63F57B826995D9900B1BD88 /* UIImageView+Extension.swift in Sources */,
 				A63F579B26987E7A00B1BD88 /* ImageCellViewModel.swift in Sources */,
+				A63F57B626994BA200B1BD88 /* ImageRepo.swift in Sources */,
 				A63F579E2698802800B1BD88 /* UICollectionReusableView+Extension.swift in Sources */,
 				A63F57A226990C4100B1BD88 /* ImageDTO.swift in Sources */,
 				A63F57A82699185E00B1BD88 /* EndpointConstructable.swift in Sources */,
 				A63F57932698704C00B1BD88 /* ImageCollectionViewController.swift in Sources */,
 				A63F57A62699163100B1BD88 /* NetworkManager.swift in Sources */,
+				A63F57B326994AD500B1BD88 /* Image.swift in Sources */,
 				A63F576326986EC600B1BD88 /* AppDelegate.swift in Sources */,
 				A63F57AC26993EDA00B1BD88 /* HTTPTask.swift in Sources */,
 				A63F57AE26993EF200B1BD88 /* HTTPMethod.swift in Sources */,
