@@ -9,9 +9,15 @@ import UIKit
 
 extension UIImageView {
     func loadImage(urlString: String?, networkManager: NetworkManager = NetworkManager()) {
-        guard let urlString = urlString else { return }
+        guard let urlStringUnwrapped = urlString else { return }
         
-        networkManager.requestImage(urlString) { [weak self] result in
+        networkManager.requestImage(urlStringUnwrapped) { [weak self, urlStringUnwrapped] result in
+            // if the captured url string does not match the parameter, network call has been
+            // called twice on the image view
+            if urlStringUnwrapped != (urlString ?? "") {
+                return
+            }
+            
             DispatchQueue.main.async {
                 switch result {
                 case .success(let data):

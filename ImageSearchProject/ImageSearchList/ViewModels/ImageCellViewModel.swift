@@ -7,8 +7,22 @@
 
 import Foundation
 
-struct ImageCellViewModel {
+struct ImageCellViewModel: Hashable {
     let id: String
     let title: String
-    let url: URL?
+    let urlString: String
+    
+    init(with image: Image) {
+        self.id = image.id
+        self.title = image.title
+        self.urlString = image.imageLink
+    }
+    
+    func hash(into hasher: inout Hasher){
+        hasher.combine(id)
+    }
+    
+    static func == (lhs: ImageCellViewModel, rhs: ImageCellViewModel) -> Bool {
+        return lhs.id == rhs.id
+    }
 }

@@ -32,8 +32,8 @@ final class ImageCell: UICollectionViewCell {
     }
     
     // MARK: - Initializer method
-    init() {
-        super.init(frame: .zero)
+    override init(frame: CGRect) {
+        super.init(frame: frame)
         
         setupView()
     }
@@ -43,6 +43,12 @@ final class ImageCell: UICollectionViewCell {
     }
     
     // MARK: - UI helper methods
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        imageView.image = nil
+        titleLabel.text = nil
+    }
+    
     private func setupView() {
         addSubview(imageView)
         addSubview(titleLabel)
@@ -66,6 +72,6 @@ final class ImageCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         titleLabel.text = viewModel.title
-        // TODO: - Download image and display in imageView
+        imageView.loadImage(urlString: viewModel.urlString)
     }
 }
