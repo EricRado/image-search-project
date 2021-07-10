@@ -24,6 +24,13 @@ final class ImageCell: UICollectionViewCell {
         return label
     }()
     
+    private let activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.color = .gray
+        return activityIndicatorView
+    }()
+    
     // MARK: - Properties
     var viewModel: ImageCellViewModel? {
         didSet {
@@ -51,6 +58,7 @@ final class ImageCell: UICollectionViewCell {
     
     private func setupView() {
         addSubview(imageView)
+        addSubview(activityIndicatorView)
         addSubview(titleLabel)
         
         NSLayoutConstraint.activate([
@@ -58,6 +66,13 @@ final class ImageCell: UICollectionViewCell {
             imageView.topAnchor.constraint(equalTo: topAnchor, constant: 8),
             imageView.widthAnchor.constraint(equalToConstant: 80),
             imageView.heightAnchor.constraint(equalToConstant: 80),
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: imageView.centerYAnchor),
+            activityIndicatorView.heightAnchor.constraint(equalToConstant: 50),
+            activityIndicatorView.widthAnchor.constraint(equalToConstant: 50)
         ])
         
         NSLayoutConstraint.activate([
@@ -72,6 +87,9 @@ final class ImageCell: UICollectionViewCell {
         guard let viewModel = viewModel else { return }
         
         titleLabel.text = viewModel.title
-        imageView.loadImage(urlString: viewModel.urlString)
+        activityIndicatorView.startAnimating()
+        imageView.loadImage(urlString: viewModel.urlString, completion: { [weak self] in
+            self?.activityIndicatorView.stopAnimating()
+        })
     }
 }

@@ -8,6 +8,7 @@
 import UIKit
 
 final class ImageDetailViewController: UIViewController {
+    // MARK: UI properties
     private let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -23,6 +24,14 @@ final class ImageDetailViewController: UIViewController {
         return label
     }()
     
+    private let activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .medium)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.color = .gray
+        return activityIndicatorView
+    }()
+    
+    // MARK: - Instance properties
     private let viewModel: ImageCellViewModel
     
     init(viewModel: ImageCellViewModel) {
@@ -44,6 +53,7 @@ final class ImageDetailViewController: UIViewController {
         navigationItem.title = viewModel.title
         
         view.addSubview(imageView)
+        view.addSubview(activityIndicatorView)
         view.addSubview(descriptionLabel)
         
         NSLayoutConstraint.activate([
@@ -54,12 +64,22 @@ final class ImageDetailViewController: UIViewController {
         ])
         
         NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            activityIndicatorView.heightAnchor.constraint(equalToConstant: 75),
+            activityIndicatorView.widthAnchor.constraint(equalToConstant: 75),
+        ])
+        
+        NSLayoutConstraint.activate([
             descriptionLabel.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 16),
             descriptionLabel.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -16),
             descriptionLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 16)
         ])
         
-        imageView.loadImage(urlString: viewModel.urlString)
+        imageView.loadImage(urlString: viewModel.urlString, completion: { [weak self] in
+            self?.activityIndicatorView.stopAnimating()
+        })
+        
         let descriptionText = "Description : \(viewModel.description != "" ? viewModel.description : "N/A")"
         descriptionLabel.text = descriptionText
     }
