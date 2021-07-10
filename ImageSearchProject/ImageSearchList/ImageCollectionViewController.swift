@@ -32,6 +32,13 @@ final class ImageCollectionViewController: UIViewController {
         return collectionView
     }()
     
+    private let activityIndicatorView: UIActivityIndicatorView = {
+        let activityIndicatorView = UIActivityIndicatorView(style: .large)
+        activityIndicatorView.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicatorView.color = .gray
+        return activityIndicatorView
+    }()
+    
     // MARK: - Instance properties
     private var dataSource: UICollectionViewDiffableDataSource<Section, ImageCellViewModel>?
     private var snapshot: NSDiffableDataSourceSnapshot<Section, ImageCellViewModel>?
@@ -59,11 +66,18 @@ final class ImageCollectionViewController: UIViewController {
         navigationItem.hidesSearchBarWhenScrolling = false
         
         view.addSubview(collectionView)
+        view.addSubview(activityIndicatorView)
+        
         NSLayoutConstraint.activate([
             collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             collectionView.topAnchor.constraint(equalTo: view.topAnchor),
             collectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor)
+        ])
+        
+        NSLayoutConstraint.activate([
+            activityIndicatorView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicatorView.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
     }
     
@@ -115,7 +129,10 @@ final class ImageCollectionViewController: UIViewController {
         imageCellViewModels.removeAll()
         
         guard text != "" else { return }
-        imageRepo.fetchImages(with: text) { result in
+        
+        activityIndicatorView.startAnimating()
+        imageRepo.fetchImages(with: text) { [weak self, text] result in
+            guard text == self?.searchTextDisplayed else { return }
             DispatchQueue.main.async { [weak self] in
                 guard let self = self else { return }
                 switch result {
@@ -130,6 +147,7 @@ final class ImageCollectionViewController: UIViewController {
                     // TODO: - Handle error
                     print(error.localizedDescription)
                 }
+                self.activityIndicatorView.stopAnimating()
             }
         }
     }

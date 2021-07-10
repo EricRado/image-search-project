@@ -35,6 +35,7 @@ final class ImageDetailViewController: UIViewController {
     // MARK: - Instance properties
     private let viewModel: ImageCellViewModel
     
+    // MARK: - Initializer methods
     init(viewModel: ImageCellViewModel) {
         self.viewModel = viewModel
         super.init(nibName: nil, bundle: nil)
@@ -44,11 +45,13 @@ final class ImageDetailViewController: UIViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Lifecycle methods
     override func viewDidLoad() {
         super.viewDidLoad()
         setupView()
     }
     
+    // MARK: - View helper methods
     private func setupView() {
         view.backgroundColor = .white
         navigationItem.title = viewModel.title
