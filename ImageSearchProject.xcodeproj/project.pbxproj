@@ -28,6 +28,7 @@
 		A63F57B826995D9900B1BD88 /* UIImageView+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57B726995D9900B1BD88 /* UIImageView+Extension.swift */; };
 		A63F57BB2699E18700B1BD88 /* Debouncer.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57BA2699E18700B1BD88 /* Debouncer.swift */; };
 		A63F57BE2699E8C700B1BD88 /* ImageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57BD2699E8C700B1BD88 /* ImageDetailViewController.swift */; };
+		A63F57C12699F92000B1BD88 /* ImageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63F57C02699F92000B1BD88 /* ImageType.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		A63F57B726995D9900B1BD88 /* UIImageView+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Extension.swift"; sourceTree = "<group>"; };
 		A63F57BA2699E18700B1BD88 /* Debouncer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Debouncer.swift; sourceTree = "<group>"; };
 		A63F57BD2699E8C700B1BD88 /* ImageDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDetailViewController.swift; sourceTree = "<group>"; };
+		A63F57C02699F92000B1BD88 /* ImageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageType.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 		A63F576126986EC600B1BD88 /* ImageSearchProject */ = {
 			isa = PBXGroup;
 			children = (
+				A63F57BF2699F90400B1BD88 /* Enumerations */,
 				A63F57BC2699E89B00B1BD88 /* ImageDetail */,
 				A63F57B92699E17200B1BD88 /* Shared */,
 				A63F57B426994B9000B1BD88 /* Repos */,
@@ -263,6 +266,14 @@
 			path = ImageDetail;
 			sourceTree = "<group>";
 		};
+		A63F57BF2699F90400B1BD88 /* Enumerations */ = {
+			isa = PBXGroup;
+			children = (
+				A63F57C02699F92000B1BD88 /* ImageType.swift */,
+			);
+			path = Enumerations;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -399,6 +410,7 @@
 				A63F579E2698802800B1BD88 /* UICollectionReusableView+Extension.swift in Sources */,
 				A63F57A226990C4100B1BD88 /* ImageDTO.swift in Sources */,
 				A63F57A82699185E00B1BD88 /* EndpointConstructable.swift in Sources */,
+				A63F57C12699F92000B1BD88 /* ImageType.swift in Sources */,
 				A63F57932698704C00B1BD88 /* ImageCollectionViewController.swift in Sources */,
 				A63F57A62699163100B1BD88 /* NetworkManager.swift in Sources */,
 				A63F57B326994AD500B1BD88 /* Image.swift in Sources */,

@@ -24,6 +24,7 @@ final class ImageCollectionViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.delegate = self
         collectionView.register(ImageCell.self, forCellWithReuseIdentifier: ImageCell.identifier)
         collectionView.translatesAutoresizingMaskIntoConstraints = false
         collectionView.keyboardDismissMode = .onDrag
@@ -119,8 +120,9 @@ final class ImageCollectionViewController: UIViewController {
                 guard let self = self else { return }
                 switch result {
                 case .success(let images):
-                    let viewModels = images.map { ImageCellViewModel(with: $0) }
-                    self.images.append(contentsOf: images)
+                    let filteredImages = images.filter { ImageType(rawValue: $0.type) == .jpg || ImageType(rawValue: $0.type) == .png }
+                    let viewModels = filteredImages.map { ImageCellViewModel(with: $0) }
+                    self.images.append(contentsOf: filteredImages)
                     self.imageCellViewModels.append(contentsOf: viewModels)
                     self.createDataSource()
                     self.updateUI()
@@ -151,5 +153,12 @@ extension ImageCollectionViewController: DebouncerDelegate {
         getImages(with: searchText)
     }
 }
+
+// MARK: - UICollectionViewDelegate
+extension ImageCollectionViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let viewModel = imageCellViewModels[indexPath.row]
+        let imageDetailViewController = ImageDetailViewController(viewModel: viewModel)
+        navigationController?.pushViewController(imageDetailViewController, animated: true)
     }
 }
